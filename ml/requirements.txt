@@ -19,7 +19,7 @@ requests==2.28.1
 scipy==1.9.3
 six==1.16.0
 tokenizers==0.13.1
-torch==1.13.0+cpu
+torch==1.13.0
 tqdm==4.64.1
 transformers==4.23.1
 typing_extensions==4.4.0
