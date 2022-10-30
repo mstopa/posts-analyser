@@ -12,7 +12,7 @@ from version import __version__ as package_version
 project_root = Path(__file__).parent
 
 
-class BuildWithModelData(Command):
+class BuildWithModelComponents(Command):
     """Command to fetch model data in the building stage"""
 
     user_options = []
@@ -51,12 +51,12 @@ class BuildWithModelData(Command):
             f.write(f'model_dir = "{model_dir}"\n')
 
 
-class Build(build_py):
+class CustomBuild(build_py):
     """Command for Python modules build."""
 
     def __init__(self, dist):
         """Create a sub-command to execute."""
-        self.subcommand = BuildWithModelData(dist)
+        self.subcommand = BuildWithModelComponents(dist)
         super().__init__(dist)
 
     def run(self):
@@ -65,12 +65,12 @@ class Build(build_py):
         self.subcommand.run()
 
 
-class Develop(develop):
+class CustomDevelop(develop):
     """Command for develop installation."""
 
     def __init__(self, dist):
         """Create a sub-command to execute."""
-        self.subcommand = BuildWithModelData(dist)
+        self.subcommand = BuildWithModelComponents(dist)
         super().__init__(dist)
 
     def run(self):
@@ -84,7 +84,7 @@ class CustomEggInfo(egg_info):
 
     def __init__(self, dist):
         """Create a sub-command to execute."""
-        self.subcommand = BuildWithModelData(dist)
+        self.subcommand = BuildWithModelComponents(dist)
         super().__init__(dist)
 
     def run(self):
@@ -98,7 +98,7 @@ class CustomInstall(install):
 
     def __init__(self, dist):
         """Create a sub-command to execute."""
-        self.subcommand = BuildWithModelData(dist)
+        self.subcommand = BuildWithModelComponents(dist)
         super().__init__(dist)
 
     def run(self):
@@ -125,13 +125,15 @@ setup(
         "transformers",
         "waitress"
     ],
-    setup_requires=["requests", "transformers"],
+    setup_requires=[
+        "requests",
+        "transformers",
+    ],
     long_description=(project_root / "README.md").read_text(),
     long_description_content_type="text/markdown",
     cmdclass={
-        "build_py": Build,
-        "build_grpc": BuildWithModelData,
-        "develop": Develop,
+        "build_py": CustomBuild,
+        "develop": CustomDevelop,
         "egg_info": CustomEggInfo,
         "install": CustomInstall,
     }

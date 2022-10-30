@@ -10,10 +10,6 @@ itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.1
 numpy==1.23.4
-nvidia-cublas-cu11==11.10.3.66
-nvidia-cuda-nvrtc-cu11==11.7.99
-nvidia-cuda-runtime-cu11==11.7.99
-nvidia-cudnn-cu11==8.5.0.96
 packaging==21.3
 py-healthcheck==1.10.1
 pyparsing==3.0.9
@@ -23,7 +19,7 @@ requests==2.28.1
 scipy==1.9.3
 six==1.16.0
 tokenizers==0.13.1
-torch==1.13.0
+torch==1.13.0+cpu
 tqdm==4.64.1
 transformers==4.23.1
 typing_extensions==4.4.0
