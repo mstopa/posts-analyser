@@ -29,18 +29,33 @@ if __name__ == '__main__':
         help="custom port",
         default="8080"
         )
+    parser.add_argument(
+        '--health-check', 
+        '--health_check', 
+        dest='health_check', 
+        action='store_true',
+        help="Run health check",
+        )
     args = parser.parse_args()
 
-    response = requests.post(
-        f"http://{args.host}:{args.port}/classify",
-        data={"text": args.text}
-    )
-    
-    response_json = response.json()
-    top_label = response_json[0][0]
-    top_score = response_json[0][1]
-    
-    print(f"Input text: {args.text}")
-    print(f"Code: {response.status_code}")
-    print(f"Scores: {response_json}")
-    print(f"Result: {top_label} ({top_score})")
+    if args.health_check:
+        response = requests.post(
+            f"http://{args.host}:{args.port}/healthcheck",
+            data={"text": args.text}
+        )
+        print(response.text)
+
+    else:
+        response = requests.post(
+            f"http://{args.host}:{args.port}/classify",
+            data={"text": args.text}
+        )
+        
+        response_json = response.json()
+        top_label = response_json[0][0]
+        top_score = response_json[0][1]
+        
+        print(f"Input text: {args.text}")
+        print(f"Code: {response.status_code}")
+        print(f"Scores: {response_json}")
+        print(f"Result: {top_label} ({top_score})")

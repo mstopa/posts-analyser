@@ -2,6 +2,7 @@ import logging
 from typing import Dict
 
 from flask import Flask, jsonify, request
+from healthcheck import HealthCheck
 import numpy as np
 from scipy.special import softmax
 
@@ -35,6 +36,20 @@ def _classify(text: str) -> Dict:
     )]
 
 app = Flask(__name__)
+
+health = HealthCheck()
+
+def classify_works():
+    label = _classify("I absolutely love it!")[0][0]
+    if label == "positive":
+        return True, "healthy"
+    return False, "service is broken"
+
+health.add_check(classify_works)
+
+@app.route('/healthcheck', methods=['GET', 'POST'])
+def healthcheck():
+    return health.run()
 
 @app.route('/classify', methods=['POST'])
 def classify():

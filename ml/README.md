@@ -15,6 +15,12 @@ waitress-serve --port 8080 --call posts_sentiment_analyser:create_app
 INFO:waitress:Serving on http://127.0.0.1:8080
 ```
 
+### Health check
+```bash
+python3 demo_client.py --health-check
+{"hostname": "<hostname>", "status": "success", "timestamp": 1667134789.0272417, "results": [{"checker": "classify_works", "output": "healthy", "passed": true, "timestamp": 1667134789.027225, "expires": 1667134816.027225, "response_time": 0.019556}]}
+```
+
 ### Run example inference
 ```bash
 python3 demo_client.py
@@ -35,7 +41,7 @@ Result: negative (0.9806)
 ```
 
 ```bash
-usage: demo_client.py [-h] [-t TEXT] [--host HOST] [-p PORT]
+usage: demo_client.py [-h] [-t TEXT] [--host HOST] [-p PORT] [--health-check]
 
 Simple utility for sending requests to the Posts' sentiment analyser
 
@@ -44,6 +50,8 @@ optional arguments:
   -t TEXT, --text TEXT  custom text to classify
   --host HOST           custom host
   -p PORT, --port PORT  custom port
+  --health-check, --health_check
+                        Run health check
 ```
 
 ## Docker
@@ -62,6 +70,9 @@ INFO:waitress:Serving on http://0.0.0.0:8080
 ### Run inference
 ```bash
 python3 -m venv venv && source venv/bin/activate && pip install requests 
+
+python3 demo_client.py --port <PORT> --health-check
+{"hostname": "6f3c099e0c48", "status": "success", "timestamp": 1667135096.4810038, "results": [{"checker": "classify_works", "output": "healthy", "passed": true, "timestamp": 1667135096.4809878, "expires": 1667135123.4809878, "response_time": 0.020418}]}
 
 python3 demo_client.py --port <PORT>                                      
 Input text: What a crowd 🔥🔥🔥 Thank you Buenos Aires and everyone watching in cinemas around the world. More screenings on Saturday

@@ -16,6 +16,7 @@ setup(
     package_dir={'posts_sentiment_analyser':'src'},
     install_requires=[
         "flask",
+        "py-healthcheck",
         "numpy",
         "scipy",
         "torch",
