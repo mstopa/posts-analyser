@@ -1,5 +1,5 @@
 # Posts' sentiment analyser
-Python application for running posts' sentiment analysis using transformers from HuggingFace.
+Flask server for running posts sentiment analysis with a HuggingFace transformers model.
 
 ## Local usage
 ### Build
@@ -43,15 +43,15 @@ Result: negative (0.9806)
 ```bash
 usage: demo_client.py [-h] [-t TEXT] [--host HOST] [-p PORT] [--health-check]
 
-Simple utility for sending requests to the Posts' sentiment analyser
+Simple utility for sending requests to posts_sentiment_analyser
 
 optional arguments:
   -h, --help            show this help message and exit
-  -t TEXT, --text TEXT  custom text to classify
-  --host HOST           custom host
-  -p PORT, --port PORT  custom port
+  -t TEXT, --text TEXT  input text to classify
+  --host HOST
+  -p PORT, --port PORT
   --health-check, --health_check
-                        Run health check
+                        run health check
 ```
 
 ## Docker

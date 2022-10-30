@@ -5,28 +5,26 @@ import requests
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
                         prog = 'demo_client.py',
-                        description = 'Simple utility for sending requests to the Posts\' sentiment analyser')
+                        description = 'Simple utility for sending requests to posts_sentiment_analyser')
     parser.add_argument(
         '-t', 
         '--text', 
         dest='text', 
         type=str, 
-        help="custom text to classify",
+        help="input text to classify",
         default="What a crowd 🔥🔥🔥 Thank you Buenos Aires and everyone watching in cinemas around the world. More screenings on Saturday"
         )
     parser.add_argument(
         '--host', 
         dest='host', 
-        type=str, 
-        help="custom host",
+        type=str,
         default="127.0.0.1"
         )
     parser.add_argument(
         '-p', 
         '--port', 
         dest='port', 
-        type=str, 
-        help="custom port",
+        type=str,
         default="8080"
         )
     parser.add_argument(
@@ -34,14 +32,13 @@ if __name__ == '__main__':
         '--health_check', 
         dest='health_check', 
         action='store_true',
-        help="Run health check",
+        help="run health check",
         )
     args = parser.parse_args()
 
     if args.health_check:
         response = requests.post(
-            f"http://{args.host}:{args.port}/healthcheck",
-            data={"text": args.text}
+            f"http://{args.host}:{args.port}/healthcheck"
         )
         print(response.text)
 

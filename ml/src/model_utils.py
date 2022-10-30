@@ -1,8 +1,8 @@
 from pathlib import Path
 from typing import List
-import urllib.request
 
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
+import urllib.request
 
 def load_tokenizer(source: str) -> AutoTokenizer:
     '''
