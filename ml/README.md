@@ -45,3 +45,27 @@ optional arguments:
   --host HOST           custom host
   -p PORT, --port PORT  custom port
 ```
+
+## Docker
+### Build image
+```bash
+docker build -t "posts-sentiment-analyser:<IMAGE_TAG>" .
+```
+
+### Start server
+```bash
+docker run --name "ml-server" -p <PORT>:8080 posts-sentiment-analyser:<IMAGE_TAG>
+
+INFO:waitress:Serving on http://0.0.0.0:8080
+```
+
+### Run inference
+```bash
+python3 -m venv venv && source venv/bin/activate && pip install requests 
+
+python3 demo_client.py --port <PORT>                                      
+Input text: What a crowd 🔥🔥🔥 Thank you Buenos Aires and everyone watching in cinemas around the world. More screenings on Saturday
+Code: 200
+Scores: [['positive', '0.9871'], ['neutral', '0.0118'], ['negative', '0.0011']]
+Result: positive (0.9871)
+```

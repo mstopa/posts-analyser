@@ -1,0 +1,7 @@
+*
+!./version.py
+!./setup.py
+!./README.md
+!src/app.py
+!src/__init__.py
+!src/model_utils.py

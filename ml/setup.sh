@@ -6,6 +6,6 @@ env_dir=.venv
 
 python3 -m venv "${env_dir}"
 source "${env_dir}"/bin/activate
-pip install --upgrade pip wheel
+pip install --upgrade pip setuptools wheel
 
 pip install .
