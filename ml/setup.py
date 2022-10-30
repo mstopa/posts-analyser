@@ -112,7 +112,6 @@ setup(
     version=package_version,
     description="ML model server for sentiment analysis",
     author="Maciek Stopa",
-    author_email="m.stopa94@gmail.com",
     url="https://github.com/cansubmarinesswim/posts-analyser",
     packages=['posts_sentiment_analyser'],
     package_dir={'posts_sentiment_analyser':'src'},
