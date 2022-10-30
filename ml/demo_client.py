@@ -14,10 +14,25 @@ if __name__ == '__main__':
         help="custom text to classify",
         default="What a crowd 🔥🔥🔥 Thank you Buenos Aires and everyone watching in cinemas around the world. More screenings on Saturday"
         )
+    parser.add_argument(
+        '--host', 
+        dest='host', 
+        type=str, 
+        help="custom host",
+        default="127.0.0.1"
+        )
+    parser.add_argument(
+        '-p', 
+        '--port', 
+        dest='port', 
+        type=str, 
+        help="custom port",
+        default="8080"
+        )
     args = parser.parse_args()
 
     response = requests.post(
-        "http://localhost:5000/classify",
+        f"http://{args.host}:{args.port}/classify",
         data={"text": args.text}
     )
     

@@ -10,7 +10,9 @@ Python application for running posts' sentiment analysis using transformers from
 ### Start server
 ```bash
 source .venv/bin/activate
-FLASK_APP=src/app.py flask run
+
+waitress-serve --port 8080 --call posts_sentiment_analyser:create_app
+INFO:waitress:Serving on http://127.0.0.1:8080
 ```
 
 ### Run example inference
@@ -33,12 +35,13 @@ Result: negative (0.9806)
 ```
 
 ```bash
-python3 demo_client.py --help
-usage: demo_client.py [-h] [-t TEXT]
+usage: demo_client.py [-h] [-t TEXT] [--host HOST] [-p PORT]
 
 Simple utility for sending requests to the Posts' sentiment analyser
 
 optional arguments:
   -h, --help            show this help message and exit
   -t TEXT, --text TEXT  custom text to classify
+  --host HOST           custom host
+  -p PORT, --port PORT  custom port
 ```

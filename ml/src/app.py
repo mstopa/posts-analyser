@@ -5,7 +5,7 @@ from flask import Flask, jsonify, request
 import numpy as np
 from scipy.special import softmax
 
-import model_utils
+import posts_sentiment_analyser.model_utils as model_utils
 
 logger = logging.getLogger("ml_model")
 
@@ -43,5 +43,5 @@ def classify():
         out = _classify(text)
         return jsonify(out)
 
-if __name__ == "__main__":
-    app.run()
+def create_app():
+    return app
