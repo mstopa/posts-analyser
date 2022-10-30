@@ -1,3 +1,7 @@
+# Custom ignores
+model/*
+src/model_dir.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
