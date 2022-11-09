@@ -12,10 +12,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-scripts start --ignore ./backend_mockup",
+    "build": "react-scripts build --ignore ./backend_mockup",
+    "test": "react-scripts test --ignore ./backend_mockup",
+    "eject": "react-scripts eject --ignore ./backend_mockup"
   },
   "eslintConfig": {
     "extends": [
@@ -43,5 +43,6 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0"
-  }
+  },
+  "proxy": "http://localhost:8000"
 }

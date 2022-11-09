@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import { createPost, getPosts, removePost } from './util';
 
 function App() {
   const [post, setPost] = useState({
@@ -8,8 +9,34 @@ function App() {
   const [postsList, setPostsList] = useState();
   const [error, setError] = useState();
 
-  const handleSubmit = (event) => {
-    // Handle
+  const fetchPosts = async () => {
+    const res = await getPosts();
+    if (res.error) {
+      setError(res.error.name);
+    }
+    setPostsList(res.rows);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setError();
+
+    const data = new FormData(event.currentTarget);
+  
+    try {
+      data.set('text', post.text);
+      data.set('created_at', `${new Date().toISOString()}`);
+
+      const newPost = await createPost(data);
+
+      if (newPost.error) {
+        setError(newPost.error);
+      }
+      setPost({ text: '' });
+      fetchPosts();
+    } catch (err) {
+      setError(err);
+    }
   };
 
   const handleInputChange = (event) => {
@@ -20,8 +47,17 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    // Handle
+    try {
+      removePost(id);
+      fetchPosts();
+    } catch (err) {
+      setError(err);
+    }
   };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
     <div className="App">
