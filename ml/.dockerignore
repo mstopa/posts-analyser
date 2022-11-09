@@ -3,6 +3,5 @@
 !./setup.py
 !./README.md
 !./requirements.txt
-!src/app.py
-!src/__init__.py
-!src/model_utils.py
+!src
+src/model_dir.py

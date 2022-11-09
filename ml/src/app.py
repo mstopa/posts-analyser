@@ -41,10 +41,11 @@ app = Flask(__name__)
 health = HealthCheck()
 
 def classify_works():
-    label = _classify("I absolutely love it!")[0][0]
-    if label == "positive":
+    try:
+        _ = _classify("Input text")[0][0]
         return True, "healthy"
-    return False, "service is broken"
+    except:
+        return False, "service is broken"
 
 health.add_check(classify_works)
 

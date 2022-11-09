@@ -28,8 +28,7 @@ if __name__ == '__main__':
         default="8080"
         )
     parser.add_argument(
-        '--health-check', 
-        '--health_check', 
+        '--health-check',
         dest='health_check', 
         action='store_true',
         help="run health check",
