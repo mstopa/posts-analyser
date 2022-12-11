@@ -12,7 +12,8 @@
       "nodemon": "^2.0.14"
     },
     "dependencies": {
-      "express": "^4.17.1",
-      "formidable": "^2.0.1"
+        "dotenv": "^16.0.3",
+        "express": "^4.17.1",
+        "formidable": "^2.0.1"
     }
 }
