@@ -24,8 +24,8 @@ if __name__ == '__main__':
         '-p', 
         '--port', 
         dest='port', 
-        type=str,
-        default="8080"
+        type=int,
+        default=8080
         )
     parser.add_argument(
         '--health-check',
